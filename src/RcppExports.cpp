@@ -24,9 +24,63 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fitnessFunction_cpp
+double fitnessFunction_cpp(NumericVector dist_vec, int nrows, IntegerVector medoids);
+RcppExport SEXP _WOAkMedoids_fitnessFunction_cpp(SEXP dist_vecSEXP, SEXP nrowsSEXP, SEXP medoidsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type dist_vec(dist_vecSEXP);
+    Rcpp::traits::input_parameter< int >::type nrows(nrowsSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type medoids(medoidsSEXP);
+    rcpp_result_gen = Rcpp::wrap(fitnessFunction_cpp(dist_vec, nrows, medoids));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fitnessFunction_serial_cpp
+double fitnessFunction_serial_cpp(NumericVector dist_vec, int nrows, IntegerVector medoids);
+RcppExport SEXP _WOAkMedoids_fitnessFunction_serial_cpp(SEXP dist_vecSEXP, SEXP nrowsSEXP, SEXP medoidsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type dist_vec(dist_vecSEXP);
+    Rcpp::traits::input_parameter< int >::type nrows(nrowsSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type medoids(medoidsSEXP);
+    rcpp_result_gen = Rcpp::wrap(fitnessFunction_serial_cpp(dist_vec, nrows, medoids));
+    return rcpp_result_gen;
+END_RCPP
+}
+// medoidsEqual_cpp
+bool medoidsEqual_cpp(IntegerVector medoids1, IntegerVector medoids2);
+RcppExport SEXP _WOAkMedoids_medoidsEqual_cpp(SEXP medoids1SEXP, SEXP medoids2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type medoids1(medoids1SEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type medoids2(medoids2SEXP);
+    rcpp_result_gen = Rcpp::wrap(medoidsEqual_cpp(medoids1, medoids2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// projectToIndex_cpp
+IntegerVector projectToIndex_cpp(NumericMatrix medoid_coords, NumericMatrix Z);
+RcppExport SEXP _WOAkMedoids_projectToIndex_cpp(SEXP medoid_coordsSEXP, SEXP ZSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type medoid_coords(medoid_coordsSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Z(ZSEXP);
+    rcpp_result_gen = Rcpp::wrap(projectToIndex_cpp(medoid_coords, Z));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_WOAkMedoids_totalDistance", (DL_FUNC) &_WOAkMedoids_totalDistance, 4},
+    {"_WOAkMedoids_fitnessFunction_cpp", (DL_FUNC) &_WOAkMedoids_fitnessFunction_cpp, 3},
+    {"_WOAkMedoids_fitnessFunction_serial_cpp", (DL_FUNC) &_WOAkMedoids_fitnessFunction_serial_cpp, 3},
+    {"_WOAkMedoids_medoidsEqual_cpp", (DL_FUNC) &_WOAkMedoids_medoidsEqual_cpp, 2},
+    {"_WOAkMedoids_projectToIndex_cpp", (DL_FUNC) &_WOAkMedoids_projectToIndex_cpp, 2},
     {NULL, NULL, 0}
 };
 

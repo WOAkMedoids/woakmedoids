@@ -2,6 +2,54 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 totalDistance <- function(dist_vec, nrows, medoids, clustering) {
-    .Call('_WOAkMedoids_totalDistance', PACKAGE = 'WOAkMedoids', dist_vec, nrows, medoids, clustering)
+    .Call(`_WOAkMedoids_totalDistance`, dist_vec, nrows, medoids, clustering)
+}
+
+#' Fitness function for WOA optimization (C++ implementation)
+#'
+#' Combines cluster assignment and total distance calculation.
+#' Returns Inf if any cluster has fewer than 2 members.
+#'
+#' @param dist_vec Distance vector (from dist object)
+#' @param nrows Number of rows in the original data
+#' @param medoids Integer vector of medoid indices (1-indexed)
+#' @return total_dist (double), Inf if invalid clustering
+#' @keywords internal
+fitnessFunction_cpp <- function(dist_vec, nrows, medoids) {
+    .Call(`_WOAkMedoids_fitnessFunction_cpp`, dist_vec, nrows, medoids)
+}
+
+#' Deterministic serial fitness function for final evaluation
+#'
+#' @param dist_vec Distance vector (from dist object)
+#' @param nrows Number of rows in the original data
+#' @param medoids Integer vector of medoid indices (1-indexed)
+#' @return total_dist (double), Inf if invalid clustering
+#' @keywords internal
+fitnessFunction_serial_cpp <- function(dist_vec, nrows, medoids) {
+    .Call(`_WOAkMedoids_fitnessFunction_serial_cpp`, dist_vec, nrows, medoids)
+}
+
+#' Check if two medoid solutions are identical
+#'
+#' @param medoids1 First medoid vector (1-indexed)
+#' @param medoids2 Second medoid vector (1-indexed)
+#' @return TRUE if identical (regardless of order), FALSE otherwise
+#' @keywords internal
+medoidsEqual_cpp <- function(medoids1, medoids2) {
+    .Call(`_WOAkMedoids_medoidsEqual_cpp`, medoids1, medoids2)
+}
+
+#' Project MDS coordinates to nearest unique sample indices
+#'
+#' Finds the nearest sample in the MDS embedded space for each medoid coordinate,
+#' while enforcing a one-to-one mapping between medoids and samples (no duplicates).
+#'
+#' @param medoid_coords NumericMatrix of medoid coordinates in MDS space (ClusNum x mds_dim)
+#' @param Z NumericMatrix of sample coordinates in MDS space (nrows x mds_dim)
+#' @return IntegerVector of nearest unique sample indices (1-indexed, length = ClusNum)
+#' @keywords internal
+projectToIndex_cpp <- function(medoid_coords, Z) {
+    .Call(`_WOAkMedoids_projectToIndex_cpp`, medoid_coords, Z)
 }
 

@@ -9,8 +9,11 @@ woa_kmedoids(
   ClusNum,
   distance_method = c("dtw", "ed"),
   learned_w = NULL,
-  Max_iter = 20,
-  n = 5
+  Max_iter = 200,
+  n = 5,
+  early_stopping = TRUE,
+  patience = 5,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -22,9 +25,15 @@ woa_kmedoids(
 
 \item{learned_w}{Window size for DTW (only used if distance_method is "dtw")}
 
-\item{Max_iter}{Maximum number of iterations (default is 20, it can be adjusted according to the size of the dataset)}
+\item{Max_iter}{Maximum number of iterations (default is 200, it can be adjusted according to the size of the dataset)}
 
-\item{n}{Population size (number of whales, default is 5, itcan be adjusted according to the size of the dataset)}
+\item{n}{Population size (number of whales, default is 5, it can be adjusted according to the size of the dataset)}
+
+\item{early_stopping}{Logical. If TRUE, stop early when the best solution converges (default is TRUE)}
+
+\item{patience}{Number of consecutive iterations without improvement before early stopping (default is 5)}
+
+\item{verbose}{Logical. If TRUE, print progress messages (default is FALSE)}
 }
 \value{
 The `woa_clustering` object containing the clustering result and medoids
@@ -42,7 +51,7 @@ Lightning7_data <- Lightning7[, -1]  # Remove the first column of classification
   print(result)
 }
 \references{
-Mirjalili, S., & Lewis, A. (2016). The whale optimization algorithm. Advances in engineering software, 95, 51-67.
+Chenan H. and Tsutsumida N. (2025) A scalable k-medoids clustering via whale optimization algorithm, Array, 28,100599. https://doi.org/10.1016/j.array.2025.100599.
 }
 \author{
 Chenan Huang, Narumasa Tsutsumida

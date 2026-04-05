@@ -1,7 +1,9 @@
-useDynLib(WOAkMedoids)
+useDynLib(WOAkMedoids, .registration=TRUE)
 importFrom(Rcpp, sourceCpp)
+importFrom(RcppParallel, RcppParallelLibs)
 importFrom(stats, runif)
 importFrom(proxy, dist)
 importFrom(dtwclust, dtw_basic)
+importFrom(cluster, pam)
 
 export(woa_kmedoids)
