@@ -1,7 +1,7 @@
 # WOAkMedoids
 
 [![CRAN status](https://www.r-pkg.org/badges/version/WOAkMedoids)](https://CRAN.R-project.org/package=WOAkMedoids)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
 
 An R package that implements the Whale Optimization Algorithm (WOA) for k-medoids clustering, providing tools for effective and efficient cluster analysis in various data sets. Supported distance measures include Dynamic Time Warping (DTW) and Euclidean Distance (ED).
 
